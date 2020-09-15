@@ -12,6 +12,9 @@ void process_instruction(int mode, int pin, int val) {
         digital_listeners[pin] = 1;
         pinMode(pin, INPUT);
       }
+      if(val == 1){
+        Serial.write(digitalRead(pin));
+      }
       break;
     case 2: // digitalWrite
       break;
@@ -27,7 +30,7 @@ void process_instruction(int mode, int pin, int val) {
   }
 }
 
-int listen_to_digital(){
+int listen_to_digital(){ // I'm really beginning to doubt the utility of this...
   int sensors[14];
   for(int i = 0; i < 14; i++){
     if(digital_listeners[i] == 1){
